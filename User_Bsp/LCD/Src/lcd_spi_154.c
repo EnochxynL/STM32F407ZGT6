@@ -147,7 +147,14 @@ void  LCD_WriteBuff(uint16_t *DataBuff, uint16_t DataSize)
 void SPI_LCD_Init(void)
 {
 //   MX_SPI3_Init();               // 初始化SPI和控制引脚
-
+	
+	LCD_DC_Data;			// DC引脚拉高，默认处于写数据状态
+	LCD_CS_H;				// 拉高片选，禁止通信
+	LCD_Backlight_OFF;  	// 先关闭背光，初始化完成之后再打开		
+// 为了传输效率，本例程的SPI通信采用寄存器操作，不用HAL库自带的收发函数，所以需要单独配置下面2个   
+  __HAL_SPI_ENABLE(&LCD_SPI);   // 使能SPI
+  SPI_1LINE_TX(&LCD_SPI);       // 单线发送模式
+	
    HAL_Delay(10);               // 屏幕刚完成复位时（包括上电复位），需要等待5ms才能发送指令
 
 	LCD_CS_L;	// 片选拉低，使能IC，开始通信

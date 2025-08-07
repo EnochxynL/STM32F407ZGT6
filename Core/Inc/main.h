@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -57,6 +57,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LCD_CS_Pin GPIO_PIN_11
+#define LCD_CS_GPIO_Port GPIOD
+#define LCD_DC_Pin GPIO_PIN_12
+#define LCD_DC_GPIO_Port GPIOD
+#define LCD_Backlight_Pin GPIO_PIN_13
+#define LCD_Backlight_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */
 

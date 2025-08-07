@@ -1,62 +1,131 @@
-/***
-	*************************************************************************************************
-	*	@file  	main.c
-	*	@version V1.0
-	*	@author  Â¹Ğ¡°à¿Æ¼¼
-	*	@brief   SPIÇı¶¯ÆÁÄ»
-   ************************************************************************************************
-   *  @description
-	*
-	*	ÊµÑéÆ½Ì¨£ºÂ¹Ğ¡°àSTM32F103ZET6ºËĞÄ°å £¨ĞÍºÅ£ºLXB103ZE-P1£©
-	* ¿Í·şÎ¢ĞÅ£º19949278543
-	*
->>>>> ¹¦ÄÜËµÃ÷£º
-	*
-	*	SPIÇı¶¯LCD½øĞĞ¼òµ¥µÄÑİÊ¾
-	*
-	************************************************************************************************
-***/
-
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "led.h"
-#include "usart.h"
+#include "spi.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
 #include "lcd_spi_154.h"
+/* USER CODE END Includes */
 
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
 
+/* USER CODE END PTD */
 
-// LCD²âÊÔº¯Êı£¬º¯Êı¶¨ÒåÔÚµ×²¿
-void 	LCD_Test_Clear(void);			// ÇåÆÁ²âÊÔ
-void 	LCD_Test_Text(void);			   // ÎÄ±¾²âÊÔ
-void 	LCD_Test_Variable (void);	   // ±äÁ¿ÏÔÊ¾£¬°üÀ¨ÕûÊıºÍĞ¡Êı
-void 	LCD_Test_Color(void);			// ¾ØĞÎÌî³ä²âÊÔ
-void 	LCD_Test_Grahic(void);		   // 2DÍ¼ĞÎ»æÖÆ
-void 	LCD_Test_Image(void);			// Í¼Æ¬ÏÔÊ¾
-void  LCD_Test_Direction(void);	   // ¸ü»»ÏÔÊ¾·½Ïò
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
 
-/********************************************** º¯ÊıÉùÃ÷ *******************************************/
+/* USER CODE END PD */
 
-void SystemClock_Config(void);		// Ê±ÖÓ³õÊ¼»¯
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
 
+/* USER CODE END PM */
 
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+// LCDæµ‹è¯•å‡½æ•°ï¼Œå‡½æ•°å®šä¹‰åœ¨åº•éƒ¨
+void 	LCD_Test_Clear(void);			// æ¸…å±æµ‹è¯•
+void 	LCD_Test_Text(void);			   // æ–‡æœ¬æµ‹è¯•
+void 	LCD_Test_Variable (void);	   // å˜é‡æ˜¾ç¤ºï¼ŒåŒ…æ‹¬æ•´æ•°å’Œå°æ•°
+void 	LCD_Test_Color(void);			// çŸ©å½¢å¡«å……æµ‹è¯•
+void 	LCD_Test_Grahic(void);		   // 2Då›¾å½¢ç»˜åˆ¶
+void 	LCD_Test_Image(void);			// å›¾ç‰‡æ˜¾ç¤º
+void  LCD_Test_Direction(void);	   // æ›´æ¢æ˜¾ç¤ºæ–¹å‘
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
 int main(void)
 {
-	HAL_Init();					// ³õÊ¼»¯HAL¿â
-	SystemClock_Config();	// ÅäÖÃÏµÍ³Ê±ÖÓ
-	LED_Init();					// ³õÊ¼»¯LEDÒı½Å
-	USART1_Init();				// USART1³õÊ¼»¯	
 
-	SPI_LCD_Init();			// SPI LCDÆÁÄ»³õÊ¼»¯
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_SPI3_Init();
+  /* USER CODE BEGIN 2 */
 	
-	while (1)
-	{
-		LCD_Test_Clear(); 		// ÇåÆÁ²âÊÔ
-		LCD_Test_Text();			// ÎÄ±¾²âÊÔ
-		LCD_Test_Variable();		// ±äÁ¿ÏÔÊ¾£¬°üÀ¨ÕûÊıºÍĞ¡Êı
-		LCD_Test_Color();			// ÑÕÉ«²âÊÔ
-		LCD_Test_Grahic();		// 2DÍ¼ĞÎ»æÖÆ	
-		LCD_Test_Image();			// Í¼Æ¬ÏÔÊ¾
-		LCD_Test_Direction();	// ¸ü»»ÏÔÊ¾·½Ïò	
-	}
+	LCD_DC_Data;			// DCå¼•è„šæ‹‰é«˜ï¼Œé»˜è®¤å¤„äºå†™æ•°æ®çŠ¶æ€
+	LCD_CS_H;				// æ‹‰é«˜ç‰‡é€‰ï¼Œç¦æ­¢é€šä¿¡
+	LCD_Backlight_OFF;  	// å…ˆå…³é—­èƒŒå…‰ï¼Œåˆå§‹åŒ–å®Œæˆä¹‹åå†æ‰“å¼€		
+// ä¸ºäº†ä¼ è¾“æ•ˆç‡ï¼Œæœ¬ä¾‹ç¨‹çš„SPIé€šä¿¡é‡‡ç”¨å¯„å­˜å™¨æ“ä½œï¼Œä¸ç”¨HALåº“è‡ªå¸¦çš„æ”¶å‘å‡½æ•°ï¼Œæ‰€ä»¥éœ€è¦å•ç‹¬é…ç½®ä¸‹é¢2ä¸ª   
+  __HAL_SPI_ENABLE(&LCD_SPI);   // ä½¿èƒ½SPI
+  SPI_1LINE_TX(&LCD_SPI);       // å•çº¿å‘é€æ¨¡å¼
+	
+	SPI_LCD_Init();			// SPI LCDå±å¹•åˆå§‹åŒ–
+	
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+		LCD_Test_Clear(); 		// æ¸…å±æµ‹è¯•
+		LCD_Test_Text();			// æ–‡æœ¬æµ‹è¯•
+		LCD_Test_Variable();		// å˜é‡æ˜¾ç¤ºï¼ŒåŒ…æ‹¬æ•´æ•°å’Œå°æ•°
+		LCD_Test_Color();			// é¢œè‰²æµ‹è¯•
+		LCD_Test_Grahic();		// 2Då›¾å½¢ç»˜åˆ¶	
+		LCD_Test_Image();			// å›¾ç‰‡æ˜¾ç¤º
+		LCD_Test_Direction();	// æ›´æ¢æ˜¾ç¤ºæ–¹å‘	
+  }
+  /* USER CODE END 3 */
 }
 
 /**
@@ -76,12 +145,13 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 336;
+  RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -104,40 +174,23 @@ void SystemClock_Config(void)
   }
 }
 
-
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
-void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
-}
-
-
+/* USER CODE BEGIN 4 */
 
 /*************************************************************************************************
-*	º¯ Êı Ãû:	LCD_Test_Clear
+*	å‡½ æ•° å:	LCD_Test_Clear
 *
-*	º¯Êı¹¦ÄÜ:	ÇåÆÁ²âÊÔ
+*	å‡½æ•°åŠŸèƒ½:	æ¸…å±æµ‹è¯•
 *************************************************************************************************/
 void LCD_Test_Clear(void)
 {
-	uint8_t	i = 0;			// ¼ÆÊı±äÁ¿
+	uint8_t	i = 0;			// è®¡æ•°å˜é‡
 			
-	LCD_SetTextFont(&CH_Font24);			// ÉèÖÃ2424ÖĞÎÄ×ÖÌå,ASCII×ÖÌå¶ÔÓ¦Îª2412
-	LCD_SetColor(LCD_BLACK);				// ÉèÖÃ»­±ÊÑÕÉ«
+	LCD_SetTextFont(&CH_Font24);			// è®¾ç½®2424ä¸­æ–‡å­—ä½“,ASCIIå­—ä½“å¯¹åº”ä¸º2412
+	LCD_SetColor(LCD_BLACK);				// è®¾ç½®ç”»ç¬”é¢œè‰²
 
 	for(i=0;i<8;i++)
 	{
-		switch (i)		// ÇĞ»»±³¾°É«
+		switch (i)		// åˆ‡æ¢èƒŒæ™¯è‰²
 		{
 			case 0: LCD_SetBackColor(LIGHT_RED); 		break;	
 			case 1: LCD_SetBackColor(LIGHT_GREEN); 	break;				
@@ -149,25 +202,25 @@ void LCD_Test_Clear(void)
 			case 7: LCD_SetBackColor(LCD_WHITE); 		break;			
 			default:	break;			
 		}
-		LCD_Clear();		// ÇåÆÁ
-		LCD_DisplayText(13, 70,"STM32 Ë¢ÆÁ²âÊÔ");
-		LCD_DisplayText(13,106,"ÆÁÄ»·Ö±æÂÊ:240*240");
-		LCD_DisplayText(13,142,"¿ØÖÆÆ÷:ST7789");	
-		HAL_Delay(1000);	// ÑÓÊ±
+		LCD_Clear();		// æ¸…å±
+		LCD_DisplayText(13, 70,"STM32 åˆ·å±æµ‹è¯•");
+		LCD_DisplayText(13,106,"å±å¹•åˆ†è¾¨ç‡:240*240");
+		LCD_DisplayText(13,142,"æ§åˆ¶å™¨:ST7789");	
+		HAL_Delay(1000);	// å»¶æ—¶
 	}
 }
 
 /*************************************************************************************************
-*	º¯ Êı Ãû:	LCD_Test_Text
+*	å‡½ æ•° å:	LCD_Test_Text
 *
-*	º¯Êı¹¦ÄÜ:	ÎÄ±¾ÏÔÊ¾²âÊÔ
+*	å‡½æ•°åŠŸèƒ½:	æ–‡æœ¬æ˜¾ç¤ºæµ‹è¯•
 *
-*	Ëµ    Ã÷:	ÏÔÊ¾ÎÄ±¾£¬°üÀ¨¸÷ÖÖ×ÖÌå´óĞ¡µÄÖĞÎÄºÍASCII×Ö·û 
+*	è¯´    æ˜:	æ˜¾ç¤ºæ–‡æœ¬ï¼ŒåŒ…æ‹¬å„ç§å­—ä½“å¤§å°çš„ä¸­æ–‡å’ŒASCIIå­—ç¬¦ 
 *************************************************************************************************/
 void LCD_Test_Text(void)
 {
-	LCD_SetBackColor(LCD_BLACK); 			//	ÉèÖÃ±³¾°É«
-	LCD_Clear(); 								// ÇåÆÁ
+	LCD_SetBackColor(LCD_BLACK); 			//	è®¾ç½®èƒŒæ™¯è‰²
+	LCD_Clear(); 								// æ¸…å±
 	
 	LCD_SetColor(LCD_WHITE);
 	LCD_SetAsciiFont(&ASCII_Font32); LCD_DisplayString(0, 0,"!#$'()*+,-.0123"); 						    		
@@ -183,112 +236,112 @@ void LCD_Test_Text(void)
 	LCD_SetAsciiFont(&ASCII_Font24); LCD_DisplayString(0,152,"!#&'()*+,-.012345678"); 				  	
 	LCD_SetAsciiFont(&ASCII_Font32); LCD_DisplayString(0,176,"!#&'()*+,-.0123"); 							  		
 
-	LCD_SetTextFont(&CH_Font24);			// ÉèÖÃ2424ÖĞÎÄ×ÖÌå,ASCII×ÖÌå¶ÔÓ¦Îª2412
-	LCD_SetColor(LCD_YELLOW);				// ÉèÖÃ»­±Ê£¬»ÆÉ«
-	LCD_DisplayText(0, 216,"ASCII×Ö·û¼¯");
+	LCD_SetTextFont(&CH_Font24);			// è®¾ç½®2424ä¸­æ–‡å­—ä½“,ASCIIå­—ä½“å¯¹åº”ä¸º2412
+	LCD_SetColor(LCD_YELLOW);				// è®¾ç½®ç”»ç¬”ï¼Œé»„è‰²
+	LCD_DisplayText(0, 216,"ASCIIå­—ç¬¦é›†");
 
-	HAL_Delay(2000);	// ÑÓÊ±µÈ´ı
-	LCD_Clear(); 								// ÇåÆÁ
+	HAL_Delay(2000);	// å»¶æ—¶ç­‰å¾…
+	LCD_Clear(); 								// æ¸…å±
 
-	LCD_SetTextFont(&CH_Font12);			// ÉèÖÃ1212ÖĞÎÄ×ÖÌå,ASCII×ÖÌå¶ÔÓ¦Îª1206
-	LCD_SetColor(0X8AC6D1);					// ÉèÖÃ»­±Ê
-	LCD_DisplayText(14, 10,"1212:Â¹Ğ¡°à¿Æ¼¼");	
+	LCD_SetTextFont(&CH_Font12);			// è®¾ç½®1212ä¸­æ–‡å­—ä½“,ASCIIå­—ä½“å¯¹åº”ä¸º1206
+	LCD_SetColor(0X8AC6D1);					// è®¾ç½®ç”»ç¬”
+	LCD_DisplayText(14, 10,"1212:é¹¿å°ç­ç§‘æŠ€");	
 	
-	LCD_SetTextFont(&CH_Font16);			// ÉèÖÃ1616ÖĞÎÄ×ÖÌå,ASCII×ÖÌå¶ÔÓ¦Îª1608
-	LCD_SetColor(0XC5E1A5);					// ÉèÖÃ»­±Ê
-	LCD_DisplayText(14, 30,"1616:Â¹Ğ¡°à¿Æ¼¼");		
+	LCD_SetTextFont(&CH_Font16);			// è®¾ç½®1616ä¸­æ–‡å­—ä½“,ASCIIå­—ä½“å¯¹åº”ä¸º1608
+	LCD_SetColor(0XC5E1A5);					// è®¾ç½®ç”»ç¬”
+	LCD_DisplayText(14, 30,"1616:é¹¿å°ç­ç§‘æŠ€");		
 	
-	LCD_SetTextFont(&CH_Font20);			// ÉèÖÃ2020ÖĞÎÄ×ÖÌå,ASCII×ÖÌå¶ÔÓ¦Îª2010
-	LCD_SetColor(0XFFB549);					// ÉèÖÃ»­±Ê
-	LCD_DisplayText(14, 60,"2020:Â¹Ğ¡°à¿Æ¼¼");		
+	LCD_SetTextFont(&CH_Font20);			// è®¾ç½®2020ä¸­æ–‡å­—ä½“,ASCIIå­—ä½“å¯¹åº”ä¸º2010
+	LCD_SetColor(0XFFB549);					// è®¾ç½®ç”»ç¬”
+	LCD_DisplayText(14, 60,"2020:é¹¿å°ç­ç§‘æŠ€");		
 
-	LCD_SetTextFont(&CH_Font24);			// ÉèÖÃ2424ÖĞÎÄ×ÖÌå,ASCII×ÖÌå¶ÔÓ¦Îª2412
-	LCD_SetColor(0XFF585D);					// ÉèÖÃ»­±Ê
-	LCD_DisplayText(14, 90,"2424:Â¹Ğ¡°à¿Æ¼¼");		
+	LCD_SetTextFont(&CH_Font24);			// è®¾ç½®2424ä¸­æ–‡å­—ä½“,ASCIIå­—ä½“å¯¹åº”ä¸º2412
+	LCD_SetColor(0XFF585D);					// è®¾ç½®ç”»ç¬”
+	LCD_DisplayText(14, 90,"2424:é¹¿å°ç­ç§‘æŠ€");		
 
-	LCD_SetTextFont(&CH_Font32);			// ÉèÖÃ3232ÖĞÎÄ×ÖÌå,ASCII×ÖÌå¶ÔÓ¦Îª3216
-	LCD_SetColor(0xFFB6B9);					// ÉèÖÃ»­±Ê
-	LCD_DisplayText(14, 130,"3232:Â¹Ğ¡°à¿Æ¼¼");		
+	LCD_SetTextFont(&CH_Font32);			// è®¾ç½®3232ä¸­æ–‡å­—ä½“,ASCIIå­—ä½“å¯¹åº”ä¸º3216
+	LCD_SetColor(0xFFB6B9);					// è®¾ç½®ç”»ç¬”
+	LCD_DisplayText(14, 130,"3232:é¹¿å°ç­ç§‘æŠ€");		
 
-	LCD_SetTextFont(&CH_Font24);			// ÉèÖÃ2424ÖĞÎÄ×ÖÌå,ASCII×ÖÌå¶ÔÓ¦Îª2412
+	LCD_SetTextFont(&CH_Font24);			// è®¾ç½®2424ä¸­æ–‡å­—ä½“,ASCIIå­—ä½“å¯¹åº”ä¸º2412
 	LCD_SetColor(LCD_WHITE);
- 	LCD_DisplayText(14, 180,"ÖĞÎÄÏÔÊ¾");	  
+ 	LCD_DisplayText(14, 180,"ä¸­æ–‡æ˜¾ç¤º");	  
 
-	HAL_Delay(2000);	// ÑÓÊ±µÈ´ı
+	HAL_Delay(2000);	// å»¶æ—¶ç­‰å¾…
 }
 /************************************************************************************************
-*	º¯ Êı Ãû:	LCD_Test_Variable
+*	å‡½ æ•° å:	LCD_Test_Variable
 *
-*	º¯Êı¹¦ÄÜ:	±äÁ¿ÏÔÊ¾£¬°üÀ¨ÕûÊıºÍĞ¡Êı
+*	å‡½æ•°åŠŸèƒ½:	å˜é‡æ˜¾ç¤ºï¼ŒåŒ…æ‹¬æ•´æ•°å’Œå°æ•°
 *************************************************************************************************/
 void LCD_Test_Variable (void)
 {
-	uint16_t i;					// ¼ÆÊı±äÁ¿
-	int32_t	a = 0;			// ¶¨ÒåÕûÊı±äÁ¿£¬ÓÃÓÚ²âÊÔ
-	int32_t	b = 0;			// ¶¨ÒåÕûÊı±äÁ¿£¬ÓÃÓÚ²âÊÔ
-	int32_t	c = 0;			// ¶¨ÒåÕûÊı±äÁ¿£¬ÓÃÓÚ²âÊÔ
+	uint16_t i;					// è®¡æ•°å˜é‡
+	int32_t	a = 0;			// å®šä¹‰æ•´æ•°å˜é‡ï¼Œç”¨äºæµ‹è¯•
+	int32_t	b = 0;			// å®šä¹‰æ•´æ•°å˜é‡ï¼Œç”¨äºæµ‹è¯•
+	int32_t	c = 0;			// å®šä¹‰æ•´æ•°å˜é‡ï¼Œç”¨äºæµ‹è¯•
 
-	double p = 3.1415926;	// ¶¨Òå¸¡µãÊı±äÁ¿£¬ÓÃÓÚ²âÊÔ
-	double f = -1234.1234;	// ¶¨Òå¸¡µãÊı±äÁ¿£¬ÓÃÓÚ²âÊÔ
+	double p = 3.1415926;	// å®šä¹‰æµ®ç‚¹æ•°å˜é‡ï¼Œç”¨äºæµ‹è¯•
+	double f = -1234.1234;	// å®šä¹‰æµ®ç‚¹æ•°å˜é‡ï¼Œç”¨äºæµ‹è¯•
 	
-	LCD_SetBackColor(LCD_BLACK); 			//	ÉèÖÃ±³¾°É«
-	LCD_Clear(); 								// ÇåÆÁ
+	LCD_SetBackColor(LCD_BLACK); 			//	è®¾ç½®èƒŒæ™¯è‰²
+	LCD_Clear(); 								// æ¸…å±
 	
    LCD_SetTextFont(&CH_Font24);     
-	LCD_SetColor(LIGHT_CYAN);					// ÉèÖÃ»­±Ê£¬À¶ÂÌÉ«		
-	LCD_DisplayText(0,10,"ÕıÊı:");				
-	LCD_DisplayText(0,40,"¸ºÊı:");					
+	LCD_SetColor(LIGHT_CYAN);					// è®¾ç½®ç”»ç¬”ï¼Œè“ç»¿è‰²		
+	LCD_DisplayText(0,10,"æ­£æ•°:");				
+	LCD_DisplayText(0,40,"è´Ÿæ•°:");					
 				
-	LCD_SetColor(LIGHT_YELLOW);				// ÉèÖÃ»­±Ê£¬ÁÁ»ÆÉ«		
-	LCD_DisplayText(0, 80,"Ìî³ä¿Õ¸ñ:");	
-	LCD_DisplayText(0,110,"Ìî³ä0:");	
+	LCD_SetColor(LIGHT_YELLOW);				// è®¾ç½®ç”»ç¬”ï¼Œäº®é»„è‰²		
+	LCD_DisplayText(0, 80,"å¡«å……ç©ºæ ¼:");	
+	LCD_DisplayText(0,110,"å¡«å……0:");	
 	
-	LCD_SetColor(LIGHT_RED);					// ÉèÖÃ»­±Ê	£¬ÁÁºìÉ«		
-	LCD_DisplayText(0, 150,"ÕıĞ¡Êı:");	
-	LCD_DisplayText(0, 180,"¸ºĞ¡Êı:");		
+	LCD_SetColor(LIGHT_RED);					// è®¾ç½®ç”»ç¬”	ï¼Œäº®çº¢è‰²		
+	LCD_DisplayText(0, 150,"æ­£å°æ•°:");	
+	LCD_DisplayText(0, 180,"è´Ÿå°æ•°:");		
 	
 	for(i=0;i<100;i++)
    {
-		LCD_SetColor(LIGHT_CYAN);								// ÉèÖÃ»­±Ê	£¬À¶ÂÌÉ«	
-		LCD_ShowNumMode(Fill_Space);							// ¶àÓàÎ»Ìî³ä¿Õ¸ñ
-		LCD_DisplayNumber( 80,10, b+i*10, 4) ;				// ÏÔÊ¾±äÁ¿			
-		LCD_DisplayNumber( 80,40, c-i*10, 4) ;				// ÏÔÊ¾±äÁ¿			
+		LCD_SetColor(LIGHT_CYAN);								// è®¾ç½®ç”»ç¬”	ï¼Œè“ç»¿è‰²	
+		LCD_ShowNumMode(Fill_Space);							// å¤šä½™ä½å¡«å……ç©ºæ ¼
+		LCD_DisplayNumber( 80,10, b+i*10, 4) ;				// æ˜¾ç¤ºå˜é‡			
+		LCD_DisplayNumber( 80,40, c-i*10, 4) ;				// æ˜¾ç¤ºå˜é‡			
 		
-		LCD_SetColor(LIGHT_YELLOW);								// ÉèÖÃ»­±Ê£¬ÁÁ»ÆÉ«	
+		LCD_SetColor(LIGHT_YELLOW);								// è®¾ç½®ç”»ç¬”ï¼Œäº®é»„è‰²	
 
-		LCD_ShowNumMode(Fill_Space);								// ¶àÓàÎ»Ìî³ä ¿Õ¸ñ
-		LCD_DisplayNumber( 130, 80, a+i*150, 8) ;				// ÏÔÊ¾±äÁ¿		
+		LCD_ShowNumMode(Fill_Space);								// å¤šä½™ä½å¡«å…… ç©ºæ ¼
+		LCD_DisplayNumber( 130, 80, a+i*150, 8) ;				// æ˜¾ç¤ºå˜é‡		
 
-		LCD_ShowNumMode(Fill_Zero);								// ¶àÓàÎ»Ìî³ä0      
-		LCD_DisplayNumber( 130,110, b+i*150, 8) ;				// ÏÔÊ¾±äÁ¿			
+		LCD_ShowNumMode(Fill_Zero);								// å¤šä½™ä½å¡«å……0      
+		LCD_DisplayNumber( 130,110, b+i*150, 8) ;				// æ˜¾ç¤ºå˜é‡			
 		
-		LCD_SetColor(LIGHT_RED);									// ÉèÖÃ»­±Ê£¬ÁÁºìÉ«			
-		LCD_ShowNumMode(Fill_Space);								// ¶àÓàÎ»Ìî³ä¿Õ¸ñ		
-		LCD_DisplayDecimals( 100, 150, p+i*0.1,  6,3);		// ÏÔÊ¾Ğ¡Êı	
-		LCD_DisplayDecimals( 100, 180, f+i*0.01, 11,4);		// ÏÔÊ¾Ğ¡Êı		
+		LCD_SetColor(LIGHT_RED);									// è®¾ç½®ç”»ç¬”ï¼Œäº®çº¢è‰²			
+		LCD_ShowNumMode(Fill_Space);								// å¤šä½™ä½å¡«å……ç©ºæ ¼		
+		LCD_DisplayDecimals( 100, 150, p+i*0.1,  6,3);		// æ˜¾ç¤ºå°æ•°	
+		LCD_DisplayDecimals( 100, 180, f+i*0.01, 11,4);		// æ˜¾ç¤ºå°æ•°		
 		
 		HAL_Delay(15);				
    }
 	HAL_Delay(2500);		
 }
 /*************************************************************************************************
-*	º¯ Êı Ãû:	LCD_Test_Color
+*	å‡½ æ•° å:	LCD_Test_Color
 *
-*	º¯Êı¹¦ÄÜ:	ÑÕÉ«²â
+*	å‡½æ•°åŠŸèƒ½:	é¢œè‰²æµ‹
 *************************************************************************************************/
 void LCD_Test_Color(void)
 {
-	uint16_t i;					// ¼ÆÊı±äÁ¿
+	uint16_t i;					// è®¡æ•°å˜é‡
 	uint16_t y;
-// ÑÕÉ«²âÊÔ>>>>>	
-	LCD_SetBackColor(LCD_BLACK); //ÉèÖÃ±³¾°É«
-	LCD_Clear(); //ÇåÆÁ£¬Ë¢±³¾°É«
+// é¢œè‰²æµ‹è¯•>>>>>	
+	LCD_SetBackColor(LCD_BLACK); //è®¾ç½®èƒŒæ™¯è‰²
+	LCD_Clear(); //æ¸…å±ï¼Œåˆ·èƒŒæ™¯è‰²
 	
-	LCD_SetTextFont(&CH_Font20);			// ÉèÖÃ×ÖÌå
-	LCD_SetColor(LCD_WHITE);				// ÉèÖÃ»­±ÊÑÕÉ«
-	LCD_DisplayText(0,0,"RGBÈı»ùÉ«:");
+	LCD_SetTextFont(&CH_Font20);			// è®¾ç½®å­—ä½“
+	LCD_SetColor(LCD_WHITE);				// è®¾ç½®ç”»ç¬”é¢œè‰²
+	LCD_DisplayText(0,0,"RGBä¸‰åŸºè‰²:");
 
-	//Ê¹ÓÃ»­Ïßº¯Êı»æÖÆÈı»ùÉ«É«Ìõ
+	//ä½¿ç”¨ç”»çº¿å‡½æ•°ç»˜åˆ¶ä¸‰åŸºè‰²è‰²æ¡
 	for(i=0;i<240;i++)
 	{
 		LCD_SetColor( LCD_RED-(i<<16) );
@@ -320,80 +373,80 @@ void LCD_Test_Color(void)
 }
 
 /*************************************************************************************************
-*	º¯ Êı Ãû:	LCD_Test_Grahic
+*	å‡½ æ•° å:	LCD_Test_Grahic
 *
-*	º¯Êı¹¦ÄÜ:	2DÍ¼ĞÎ»æÖÆ
+*	å‡½æ•°åŠŸèƒ½:	2Då›¾å½¢ç»˜åˆ¶
 *************************************************************************************************/
 void LCD_Test_Grahic(void)
 {
-	LCD_SetBackColor(LCD_BLACK); //ÉèÖÃ±³¾°É«
-	LCD_Clear(); //ÇåÆÁ£¬Ë¢±³¾°É«	
+	LCD_SetBackColor(LCD_BLACK); //è®¾ç½®èƒŒæ™¯è‰²
+	LCD_Clear(); //æ¸…å±ï¼Œåˆ·èƒŒæ™¯è‰²	
 
 	LCD_SetColor(LCD_WHITE);	
-	LCD_DrawRect(0,0,240,240); 			//»æÖÆ¾ØĞÎ
+	LCD_DrawRect(0,0,240,240); 			//ç»˜åˆ¶çŸ©å½¢
 
-	LCD_SetColor(LCD_RED);    LCD_FillCircle(140,50,30);		//Ìî³äÔ²ĞÎ
+	LCD_SetColor(LCD_RED);    LCD_FillCircle(140,50,30);		//å¡«å……åœ†å½¢
 	LCD_SetColor(LCD_GREEN);  LCD_FillCircle(170,50,30); 	
 	LCD_SetColor(LCD_BLUE);   LCD_FillCircle(200,50,30);  	
 	
 	LCD_SetColor(LCD_YELLOW);
-	LCD_DrawLine(26,26,113,64);				//»­Ö±Ïß
-	LCD_DrawLine(35,22,106,81);				//»­Ö±Ïß
-	LCD_DrawLine(45,20, 93,100);				//»­Ö±Ïß
-	LCD_DrawLine(52,16, 69,108);				//»­Ö±Ïß
-	LCD_DrawLine(62,16, 44,108);				//»­Ö±Ïß
+	LCD_DrawLine(26,26,113,64);				//ç”»ç›´çº¿
+	LCD_DrawLine(35,22,106,81);				//ç”»ç›´çº¿
+	LCD_DrawLine(45,20, 93,100);				//ç”»ç›´çº¿
+	LCD_DrawLine(52,16, 69,108);				//ç”»ç›´çº¿
+	LCD_DrawLine(62,16, 44,108);				//ç”»ç›´çº¿
 	
 	LCD_SetColor(LIGHT_CYAN);
-	LCD_DrawCircle(120,170,30);			//»æÖÆÔ²ĞÎ
+	LCD_DrawCircle(120,170,30);			//ç»˜åˆ¶åœ†å½¢
 	LCD_DrawCircle(120,170,20);   
 
 	LCD_SetColor(LIGHT_RED);	
-	LCD_DrawEllipse(120,170,90,40); 	//»æÖÆÍÖÔ² 
-	LCD_DrawEllipse(120,170,70,40); 	//»æÖÆÍÖÔ²    
+	LCD_DrawEllipse(120,170,90,40); 	//ç»˜åˆ¶æ¤­åœ† 
+	LCD_DrawEllipse(120,170,70,40); 	//ç»˜åˆ¶æ¤­åœ†    
 	LCD_SetColor(LIGHT_MAGENTA);	
-	LCD_DrawEllipse(120,170,100,50); 	//»æÖÆÍÖÔ²
+	LCD_DrawEllipse(120,170,100,50); 	//ç»˜åˆ¶æ¤­åœ†
 	LCD_DrawEllipse(120,170,110,60);  
 
 	HAL_Delay(2000);		
 }
 /*************************************************************************************************
-*	º¯ Êı Ãû:	LCD_Test_Image
+*	å‡½ æ•° å:	LCD_Test_Image
 *
-*	º¯Êı¹¦ÄÜ:	Í¼Æ¬ÏÔÊ¾²âÊÔ
+*	å‡½æ•°åŠŸèƒ½:	å›¾ç‰‡æ˜¾ç¤ºæµ‹è¯•
 *************************************************************************************************/
 void LCD_Test_Image(void)
 {
-	LCD_SetBackColor(LCD_BLACK); 			//	ÉèÖÃ±³¾°É«
-	LCD_Clear(); 								// ÇåÆÁ
+	LCD_SetBackColor(LCD_BLACK); 			//	è®¾ç½®èƒŒæ™¯è‰²
+	LCD_Clear(); 								// æ¸…å±
 	
 	LCD_SetColor( 0xffF6E58D);
-	LCD_DrawImage( 19, 21, 83, 83, Image_Android_83x83) ;	   // ÏÔÊ¾Í¼Æ¬
+	LCD_DrawImage( 19, 21, 83, 83, Image_Android_83x83) ;	   // æ˜¾ç¤ºå›¾ç‰‡
 
 	LCD_SetColor( 0xffDFF9FB);
-	LCD_DrawImage( 141, 21, 83, 83, Image_Message_83x83) ;	// ÏÔÊ¾Í¼Æ¬
+	LCD_DrawImage( 141, 21, 83, 83, Image_Message_83x83) ;	// æ˜¾ç¤ºå›¾ç‰‡
 	
 	LCD_SetColor( 0xff9DD3A8);
-	LCD_DrawImage( 19, 140, 83, 83, Image_Toys_83x83) ;		// ÏÔÊ¾Í¼Æ¬
+	LCD_DrawImage( 19, 140, 83, 83, Image_Toys_83x83) ;		// æ˜¾ç¤ºå›¾ç‰‡
 	
 	LCD_SetColor( 0xffFF8753);
-	LCD_DrawImage( 141, 140, 83, 83, Image_Video_83x83) ;		// ÏÔÊ¾Í¼Æ¬
+	LCD_DrawImage( 141, 140, 83, 83, Image_Video_83x83) ;		// æ˜¾ç¤ºå›¾ç‰‡
 
 	HAL_Delay(2000);	
 }
 /*************************************************************************************************
-*	º¯ Êı Ãû:	LCD_Test_Direction
+*	å‡½ æ•° å:	LCD_Test_Direction
 *
-*	º¯Êı¹¦ÄÜ:	¸ü»»ÏÔÊ¾·½Ïò
+*	å‡½æ•°åŠŸèƒ½:	æ›´æ¢æ˜¾ç¤ºæ–¹å‘
 *************************************************************************************************/
 void  LCD_Test_Direction(void)
 {
 	for(int i=0;i<4;i++)
 	{  
-      LCD_SetBackColor(LCD_BLACK); 			//	ÉèÖÃ±³¾°É«
-      LCD_Clear(); 								// ÇåÆÁ
+      LCD_SetBackColor(LCD_BLACK); 			//	è®¾ç½®èƒŒæ™¯è‰²
+      LCD_Clear(); 								// æ¸…å±
       LCD_SetTextFont(&CH_Font24);  
 	   LCD_SetColor( 0xffDFF9FB);         
-		switch (i)		// ÇĞ»»±³¾°É«
+		switch (i)		// åˆ‡æ¢èƒŒæ™¯è‰²
 		{
 			case 0:  
             LCD_SetDirection(Direction_V);		   
@@ -417,14 +470,46 @@ void  LCD_Test_Direction(void)
 			default:	break;			
 		}
       LCD_SetColor( 0xffF6E58D);
-      LCD_DrawImage( 19, 80, 83, 83, Image_Android_83x83) ;	   // ÏÔÊ¾Í¼Æ¬
+      LCD_DrawImage( 19, 80, 83, 83, Image_Android_83x83) ;	   // æ˜¾ç¤ºå›¾ç‰‡
       LCD_SetTextFont(&CH_Font32);
       LCD_SetColor( 0xff9DD3A8);  
-      LCD_DisplayText(130,90,"Â¹Ğ¡°à");
-      LCD_DisplayText(130,130,"¿Æ¼¼");
+      LCD_DisplayText(130,90,"é¹¿å°ç­");
+      LCD_DisplayText(130,130,"ç§‘æŠ€");
  
-      HAL_Delay(1000);	// ÑÓÊ±
+      HAL_Delay(1000);	// å»¶æ—¶
 	}
 }
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */

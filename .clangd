@@ -9,6 +9,7 @@ CompileFlags:
     - '-Id:/Github/STM32F407ZGT6/Drivers/CMSIS/Device/ST/STM32F4xx/Include'
     - '-Id:/Github/STM32F407ZGT6/Drivers/CMSIS/Include'
     - '-Id:/Github/STM32F407ZGT6/User_Bsp/LCD/Inc'
+    - '-Id:/Github/STM32F407ZGT6/User_Ctrl/inc'
     - '-DUSE_HAL_DRIVER'
     - '-DSTM32F407xx'
     - '-D__CC_ARM'

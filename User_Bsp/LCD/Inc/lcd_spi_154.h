@@ -142,16 +142,6 @@ void 	LCD_DrawImage(uint16_t x,uint16_t y,uint16_t width,uint16_t height,const u
 #define 	LCD_Backlight_ON      HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_SET)		// 高电平，开启背光
 #define 	LCD_Backlight_OFF  	 HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_RESET)	// 低电平，关闭背光
 
-void LCD_Test(void);
-// LCD测试函数，函数定义在底部
-void 	LCD_Test_Clear(void);			// 清屏测试
-void 	LCD_Test_Text(void);			   // 文本测试
-void 	LCD_Test_Variable (void);	   // 变量显示，包括整数和小数
-void 	LCD_Test_Color(void);			// 矩形填充测试
-void 	LCD_Test_Grahic(void);		   // 2D图形绘制
-void 	LCD_Test_Image(void);			// 图片显示
-void  LCD_Test_Direction(void);	   // 更换显示方向
-
 #endif //__spi_lcd
 
 

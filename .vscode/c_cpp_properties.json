@@ -13,7 +13,8 @@
                 "Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
                 "Drivers/CMSIS/Device/ST/STM32F4xx/Include",
                 "Drivers/CMSIS/Include",
-                "User_Bsp/LCD/Inc"
+                "User_Bsp/LCD/Inc",
+                "User_Ctrl/inc"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

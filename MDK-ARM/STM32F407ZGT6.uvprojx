@@ -340,7 +340,7 @@
               <MiscControls>--locale=english</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\User_Bsp\LCD\Inc</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\User_Bsp\LCD\Inc;..\User_Ctrl\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -534,10 +534,15 @@
               <FileType>1</FileType>
               <FilePath>..\User_Bsp\LCD\Src\lcd_spi_154.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>User_Ctrl</GroupName>
+          <Files>
             <File>
-              <FileName>lcd_test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User_Bsp\LCD\Src\lcd_test.c</FilePath>
+              <FileName>run.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User_Ctrl\src\run.cpp</FilePath>
             </File>
           </Files>
         </Group>

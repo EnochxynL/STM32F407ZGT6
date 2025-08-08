@@ -155,7 +155,7 @@ void SPI_LCD_Init(void)
   __HAL_SPI_ENABLE(&LCD_SPI);   // 使能SPI
   SPI_1LINE_TX(&LCD_SPI);       // 单线发送模式
 	
-   HAL_Delay(10);               // 屏幕刚完成复位时（包括上电复位），需要等待5ms才能发送指令
+  HAL_Delay(10);               // 屏幕刚完成复位时（包括上电复位），需要等待5ms才能发送指令
 
 	LCD_CS_L;	// 片选拉低，使能IC，开始通信
 

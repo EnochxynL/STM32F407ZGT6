@@ -5,8 +5,6 @@
 extern "C" {
 #endif
 
-#include "lcd_spi_154.h"
-
 void setup();
 void loop();
 	

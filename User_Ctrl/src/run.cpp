@@ -1,8 +1,8 @@
 #include "run.h"
-#include "run.hpp"
 
 extern "C" {
-	#include "lcd_test.h"
+#include "lcd_spi_154.h"
+#include "lcd_test.h"
 }
 
 void setup() {

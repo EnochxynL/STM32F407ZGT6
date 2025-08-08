@@ -14,7 +14,14 @@
                 "Drivers/CMSIS/Device/ST/STM32F4xx/Include",
                 "Drivers/CMSIS/Include",
                 "User_Bsp/LCD/Inc",
-                "User_Ctrl/inc"
+                "User_Ctrl/inc",
+                "RT-Thread",
+                "Middlewares/Third_Party/RealThread_RTOS_RT-Thread/components/finsh/inc/",
+                "Middlewares/Third_Party/RealThread_RTOS_RT-Thread/include/",
+                "Middlewares/Third_Party/RealThread_RTOS_RT-Thread/include/libc/include/",
+                "Middlewares/Third_Party/RealThread_RTOS_RT-Thread/include/libc/extension/",
+                "Middlewares/Third_Party/RealThread_RTOS_RT-Thread/include/libc/extension/fcntl/msvc/",
+                "Middlewares/Third_Party/RealThread_RTOS_RT-Thread/include/libc/extension/fcntl/octal/"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

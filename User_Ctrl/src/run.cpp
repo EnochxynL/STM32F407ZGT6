@@ -7,7 +7,7 @@ extern "C" {
 }
 
 static struct rt_thread lcd_thread;   //demo,用户定义的线程句柄
-static char lcd_thread_stack[32768];    //demo,用户定义的静态线程大小
+static char lcd_thread_stack[1024];    //demo,用户定义的静态线程大小
 static void lcd_thread_entry(void* parameter) {
 	while (1)
 	{

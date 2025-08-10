@@ -165,5 +165,7 @@
 
 // <<< end of configuration section >>>
 
+#define RT_USING_PTHREADS
+
 #endif
 

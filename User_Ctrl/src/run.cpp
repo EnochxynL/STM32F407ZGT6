@@ -1,7 +1,6 @@
 #include "run.h"
-
-extern "C" {
 #include <rtthread.h>
+extern "C" {
 #include "lcd_spi_154.h"
 #include "lcd_test.h"
 }
